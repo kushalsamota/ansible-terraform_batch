@@ -1,0 +1,65 @@
+   mkdir /project
+   cd /project
+   touch ansible.cfg
+   vim ansible.cfg
+   [defaults]
+   inventory=./hosts
+   save the file
+   touch hosts
+   vim hosts
+   [webserver]
+   172.31.21.178
+   [dbserver]
+   172.31.20.2
+   save the file 
+   78  ansible -m ping all
+   79  ansible -m command -a "hostname" all
+   80  ansible -m command -a "uname -r" all
+   81  ansible -m command -a "systemctl status chronyd" all
+   82  ansible -m command -a "cat /etc/hosts" all
+   83  ansible-doc -l
+   84  ansible-doc ping
+   85  ansible-doc command
+   86  ansible-doc copy
+   87  ansible -m copy -a "src=/etc/hostname dest=/abc.txt" all
+   88  ansible-doc yum
+   89  ansible -m yum -a "name=httpd state=present" all
+   90  ansible -m yum -a "name=httpd state=absent" all
+   91  ansible-doc lineinfile
+   92  ansible -m lineinfile -a "path=/abc.txt line=kushal" all
+   93  ansible-doc file
+   94  ansible -m file -a "path=/abc.txt state=absent" all
+   95  ansible -m file -a "path=/abcd state=directory" all
+   96  ansible -m file -a "path=/abcd state=absent" all
+   97  ansible-doc -l | grep copy
+   98  ansible-doc -l | grep ec2
+   99  ansible-doc -l | grep firewall
+  100  ansible-doc -l | grep s3
+  101  ansible webserver --list-hosts
+  102  cat hosts
+  103  ansible -m ping all -i /etc/ansible/hosts
+  104  ansible -m ping all -i /etc/ansible/hosts -i ./hosts
+  105  vim /etc/ansible/ansible.cfg
+  106  vim ansible.cfg
+  107  ansible -m ping alll
+  108  ansible -m ping all
+  109  vim ansible.cfg
+  110  ansible -m ping all
+  111  vim ansible.cfg
+  112  ansible-doc user
+  113  ansible -m user -a "name=sachin comment=happy uid=1005" webserver
+  114  ansible -m user -a "name=sachin state=absent" webserver
+  115  ansible-doc service
+  116  vim /etc/ansible/ansible.cfg
+  117  ansible -m user -a "name=sachin" webserver
+  118  ansible -m user -a "name=sachin state=absent" webserver
+  119  ansible -m yum -a "name=httpd state=present: all
+  120  ansible -m yum -a "name=httpd state=present" all
+  121  ansible -m service -a "name=httpd state=started" all
+  122  touch index.html
+  123  echo "<h1> hello everyone </h1>" > index.html
+  124  cat index.html
+  125  ansible -m copy -a "src=index.html dest=/var/www/html" all
+  126  ansible -m file -a "path=/var/www/html/index.html state=absent" all
+  127  ansible -m yum -a "name=httpd state=absent" all
+  128  history
