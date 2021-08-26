@@ -1,0 +1,70 @@
+  133  vim webserver.yaml
+  134  cat hosts
+  135  vim webserver.yaml
+  ###################################################
+---
+- name: This playbook is deploying webserver
+  hosts: all
+  tasks:
+    - name: Package is going to install
+      yum:
+        name: httpd
+        state: present
+    - name: file is going to be created
+      lineinfile:
+        path: /var/www/html/index.html
+        line: <h1> Hello Everyone </h1>
+        create: yes
+    - name: service is going to start
+      service:
+        name: httpd
+        state: started
+
+- hosts: dbserver
+  tasks:
+    - debug:
+         msg: Hello 
+         
+  ###################################################
+  136  ansible-playbook webserver.yaml --syntax-check
+  137  ansible-playbook webserver.yaml
+  138  curl m1
+  139  curl m2
+  140  vim webserver.yaml
+  141  ansible-playbook webserver.yaml
+  142  curl m1
+  143  curl m2
+  144  vim webserverremoval.yaml
+  ###################################################
+  ---
+- hosts: all
+  tasks:
+     - yum:
+         name: httpd
+         state: absent
+     - file:
+         path: /var/www/html/index.html
+         state: absent
+
+  ###################################################
+  145  ansible-playbook webserverremoval.yaml
+  146  curl m1
+  147  curl m2
+  148  vim webserver.yaml
+  149  ansible-playbook webserver.yaml
+  150  vim webserver.yaml
+  151  vim webserver
+  152  vim webserver.yaml
+  153  ansible-playbook webserver.yaml  -v
+  154  ansible-playbook webserver.yaml  -vv
+  155  ansible-playbook webserver.yaml  -vvv
+  156  ansible-playbook webserver.yaml  -vvvv
+  157  vim webserver
+  158  vim webserver.yaml
+  159  ansible-playbook webserver.yaml -C
+  160  vim webserver.yaml
+  161  ansible-doc copy
+  162  cat webserver
+  163  cat webserver.yaml
+  164  cat webserverremoval.yaml
+  165  history
